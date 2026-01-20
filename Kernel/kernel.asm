@@ -1,24 +1,23 @@
-[ORG 0x0000]
-[BITS 16]
+[ORG 0x10000]
+[BITS 32]
 
-mov ax, 0x1000
-mov ds, ax
-mov si, message
+
+mov esi, message
+mov edi, 0xB8000
 
 print:
 	lodsb
 	cmp al, 0
 	je loop
-	mov ah, 0x0E
-	mov bh, 0x00
-	mov bl, 0x08
-	int 0x10
+	mov ah, 0x0F
+	mov [edi], ax
+	inc edi
+	inc edi
 	jmp print
 
 loop: jmp loop
 
 message db "Hello From the Kernel!!!", 0
 
-times 510-($-$$) db 0
 
 
