@@ -1,0 +1,2 @@
+1. Add cursor control. ie. the printk statement automatically goes to the next line when '\n' is encountered.
+    To do this you have to use a co-ordinate system (LOOK INTO THIS)

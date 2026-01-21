@@ -3,3 +3,7 @@ kernel.bin
 
 os-image.bin
 os.img
+
+kernel_entry.o
+kernel.elf
+kernel.o
