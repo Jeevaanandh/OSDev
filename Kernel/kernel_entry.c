@@ -1,3 +1,6 @@
+#include "idt.h"
+
+
 #define VGA 0xB8000
 
 int cursor_x=0;
@@ -28,6 +31,10 @@ void printk(const char *msg) {
   
 }
 
+void k_interrupt(){
+    printk("Keyboard Interrupt!!!\n");
+}
+
 void clear_screen(){
     volatile unsigned short *vga= (unsigned short*)VGA;
 
@@ -42,7 +49,12 @@ void clear_screen(){
 }
 
 void kernel_entry() {
+    //CREATING THE IDT
+    createIDT();
+
+    //CLEARING THE SCREEN
     clear_screen();
+    printk("IDT has been created!!!\n");
     printk("Hello from C kernel!\nHello again!!!\n");
     printk("Second Hello");
     
