@@ -1,4 +1,5 @@
 #include "idt.h"
+#include "pic.h"
 
 
 #define VGA 0xB8000
@@ -31,9 +32,7 @@ void printk(const char *msg) {
   
 }
 
-void k_interrupt(){
-    printk("Keyboard Interrupt!!!\n");
-}
+
 
 void clear_screen(){
     volatile unsigned short *vga= (unsigned short*)VGA;
@@ -56,7 +55,10 @@ void kernel_entry() {
     clear_screen();
     printk("IDT has been created!!!\n");
     printk("Hello from C kernel!\nHello again!!!\n");
-    printk("Second Hello");
+    printk("Second Hello\n");
+
+    remapPIC(0x20, 0x28);
+    printk("PIC Has been re-mapped!!!\n");
     
     while (1);
 }
