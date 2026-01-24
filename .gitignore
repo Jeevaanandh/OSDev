@@ -7,3 +7,4 @@ os.img
 kernel_entry.o
 kernel.elf
 kernel.o
+idt.o
