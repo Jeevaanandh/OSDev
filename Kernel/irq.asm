@@ -6,6 +6,8 @@ extern keyboard_handler
 global general_irq
 global keyboard_irq
 
+
+;THIS IS THE GENERAL ISR FOR OTHER INTERRUPTS
 general_irq:
     pusha
     call int_handler

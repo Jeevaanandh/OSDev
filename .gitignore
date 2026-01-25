@@ -8,3 +8,7 @@ kernel_entry.o
 kernel.elf
 kernel.o
 idt.o
+irq.o
+pic.o
+std.o
+handlers.o

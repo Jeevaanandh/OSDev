@@ -12,6 +12,15 @@ void int_handler(){
 
 
 //THIS IS THe HANDLER FOR KEYBOARD INTERRUPT
+
+/*
+
+    For a proper use, create a keyboard driver ie. Decode scan codes properly to make a working keyboard.
+
+    Call the keyboard_driver function from the keyboard_handler.
+
+
+*/
 void keyboard_handler(){
     uint8_t scancode = inb(0x60);   //READING THE SCAN CODE FROM THE DATA PORT OF THE KEYBOARD CONTROLLER
 
