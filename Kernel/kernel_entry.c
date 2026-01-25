@@ -1,5 +1,5 @@
-#include "idt.h"
-#include "pic.h"
+#include "setup/idt.h"
+#include "setup/pic.h"
 
 
 #define VGA 0xB8000
