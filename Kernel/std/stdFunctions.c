@@ -1,29 +1,53 @@
+#include<stdarg.h>
+
 #define VGA 0xB8000
 
 int cursor_x=0;
 int cursor_y=0;
 
-
-void printk(const char *msg) {
+void put_char(char c){
     volatile unsigned short *vga = (unsigned short*)VGA;
+    unsigned short text = (0x0F << 8) | c;
+    int address= cursor_x+ (cursor_y*80);
+
+    vga[address]= text;
+    cursor_x+=1;
+        
+
+
+}
+
+void printk(const char *msg, ...) {
+    va_list args;
+    va_start(args, msg);
+    
     
     int i = 0;
-    while (msg[i]) {
-        int address= cursor_x+ (cursor_y*80);
-        if(msg[i]=='\n'){
+    while (*msg) {
+        if(*msg=='\n'){
             cursor_y+=1;
             cursor_x=0;
             i+=1;
+            msg+=1;
             continue;
         }
 
-        
-        unsigned short text = (0x0F << 8) | msg[i];
-        
+        if(*msg == '%'){
+            msg+=1;
+            if(*msg== 'c'){
+                char c= (char)va_arg(args, int);
+                put_char(c);
+            }
 
-        vga[address]= text;
-        cursor_x+=1;
-        i++;
+        }
+
+        else{
+            put_char(*msg);
+        }
+
+        msg+=1;
+          
+        
     }
   
 }

@@ -11,7 +11,7 @@ void kernel_entry() {
     //CLEARING THE SCREEN
     clear_screen();
     printk("IDT has been created!!!\n");
-    printk("Hello from C kernel!\nHello again!!!\n");
+    printk("Hello from C kernel!\nHello again!!! %c\n",'a');
     printk("Second Hello\n");
 
     remapPIC(0x20, 0x28);
