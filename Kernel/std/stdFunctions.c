@@ -17,6 +17,17 @@ void put_char(char c){
 
 }
 
+void delete_char(){
+    cursor_x-=1;
+    volatile unsigned short *vga = (unsigned short*)VGA;
+    unsigned short text = (0x0F << 8) | 0x00;
+    int address= cursor_x+ (cursor_y*80);
+
+    vga[address]= text;
+    
+
+}
+
 void printk(const char *msg, ...) {
     va_list args;
     va_start(args, msg);

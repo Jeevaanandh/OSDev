@@ -38,19 +38,51 @@ unsigned char shift_ascii[256] =
 	};
 
 
+/*
+SCAN CODES IN DETAIL:
+
+Each key has its own scancode.
+Scan codes are 8-bits long.
+
+
+when shift is released scancode= (sample) 1011 0111 ----- Look at the last bit=1. Therefore, that key is released
+when shift is pressed scancode= (sample) 0011 0111  ----- Look at the last bit=0. Therefore, that key is pressed
+
+so,
+We can tell if a key is pressed or released bu observing the last bit of the scan code.
+The rest of the scan code remains the same apart from the last bit for press and release.
+
+INTERRUPTS ARE RAISED FOR BOTH PRESS AND RELEASE
+
+
+
+
+*/
+
 
 void keyboard(){
 
     uint8_t scancode = inb(0x60);   //READING THE SCAN CODE FROM THE DATA PORT OF THE KEYBOARD CONTROLLER
 
-    bool released= scancode & 0x80;
-    uint8_t key= scancode & 0x7F;
+    bool released= scancode & 0x80;  // 0x80 => 1000 0000. So, when we do &, we get the last bit. Therefore we understand if it is pressed or released
+    uint8_t key= scancode & 0x7F;   // 0x7F => 0111 1111, So, when we do &, we get the actual key that is in question
 
     if(key==0x2A || key==0x36){
         shift= !released;
         goto eoi;
     
     }
+
+	//This is for Backspace handling.
+	if(key== 0x0E && !released){
+		delete_char();
+		goto eoi;
+	}
+
+	if(key== 0x1C && !released){
+		printk("Enter ");
+		goto eoi;
+	}
 
     if(released){
         goto eoi;

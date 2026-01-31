@@ -27,7 +27,7 @@ void int_handler(){
 
 
 
-
+// This is the function we jump to in irq.asm upon Keyboard Interrupt.
 void keyboard_handler(){
     keyboard();
 }
