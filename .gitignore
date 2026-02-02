@@ -12,3 +12,4 @@ irq.o
 pic.o
 std.o
 handlers.o
+keyboard.o

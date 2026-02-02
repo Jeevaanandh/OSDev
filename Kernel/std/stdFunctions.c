@@ -12,8 +12,6 @@ void put_char(char c){
 
     vga[address]= text;
     cursor_x+=1;
-        
-
 
 }
 
