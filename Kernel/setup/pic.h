@@ -21,4 +21,14 @@ static inline void outb(uint16_t port, uint8_t val) {
                       : "memory");
 }
 
+static inline void insw(uint16_t port, void *addr, uint32_t count)
+{
+    __asm__ volatile (
+        "rep insw"
+        : "+D"(addr), "+c"(count)
+        : "d"(port)
+        : "memory"
+    );
+}
+
 #endif

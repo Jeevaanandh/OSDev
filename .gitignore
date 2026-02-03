@@ -13,3 +13,4 @@ pic.o
 std.o
 handlers.o
 keyboard.o
+disk.o
