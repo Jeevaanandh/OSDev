@@ -52,6 +52,12 @@ void delete_char(){
 
 }
 
+
+void enterPress() {
+    cursor_x=0;
+    cursor_y=cursor_y+1;
+}
+
 void printk(const char *msg, ...) {
     va_list args;
     va_start(args, msg);

@@ -1,5 +1,9 @@
 #include<stdint.h>
 #include "../setup/pic.h"
+#include "../InlineAssembly/inline.h"
+
+
+void get_sector(uint32_t lba, void *buffer);
 
 void wait_ready(){
     while((inb(0x1F7) & 0x80));

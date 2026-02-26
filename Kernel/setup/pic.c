@@ -1,5 +1,6 @@
 #include<stdint.h>
 #include "pic.h"
+#include "../InlineAssembly/inline.h"
 
 
 #define MASTER_CMD 0x20
@@ -12,7 +13,7 @@
 /*
 ICW1 ----- Is used to let the PIC knwo that we are initializing it.
 
-ICW2 ----- Is to let the PIC know the offset. ie. IRQ0 of Master PIC starts from 0x20
+ICW2 ----- Is to let the PIC know the offset. ie. IRQ0 of Master PIC starts from 0x20. This is the main Re-mapping
 
 ICW3 ----- Is to let the the PIC's know how they are connected to eachother
 
@@ -42,9 +43,7 @@ ICW4 ----- Is to let the two PIC's know which CPU they are in.
 
 
 
-static inline void sti() {
-    asm volatile("sti");
-}
+
 
 
 

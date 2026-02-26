@@ -1,5 +1,5 @@
 #include<stdint.h>
-#include "../setup/pic.h"
+#include "../InlineAssembly/inline.h"
 #include "../std/stdFunctions.h"
 #include "../drivers/keyboard.h"
 

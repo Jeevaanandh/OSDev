@@ -1,3 +1,7 @@
+.idea
+mnt
+cmake-build-debug
+
 boot.bin
 kernel.bin
 
