@@ -1,9 +1,35 @@
 #include<stdarg.h>
+#include<stdint.h>
 
 #define VGA 0xB8000
 
+
+
+
+
+
+/*
+THe printk currently supports:
+    %c ----- For character
+    %x ----- For Hexadecimal. ie. Binary to Hexadecimal
+
+*/
+
+
+
 int cursor_x=0;
 int cursor_y=0;
+
+char hex_chars[] = "0123456789ABCDEF";
+
+
+void put_char(char c);
+
+void print_hex8(uint8_t value)
+{
+    put_char(hex_chars[(int)((value >> 4) & 0xF)]); 
+    put_char(hex_chars[(int)(value & 0xF)]);
+}
 
 void put_char(char c){
     volatile unsigned short *vga = (unsigned short*)VGA;
@@ -12,8 +38,6 @@ void put_char(char c){
 
     vga[address]= text;
     cursor_x+=1;
-        
-
 
 }
 
@@ -26,6 +50,12 @@ void delete_char(){
     vga[address]= text;
     
 
+}
+
+
+void enterPress() {
+    cursor_x=0;
+    cursor_y=cursor_y+1;
 }
 
 void printk(const char *msg, ...) {
@@ -50,7 +80,14 @@ void printk(const char *msg, ...) {
                 put_char(c);
             }
 
+            if(*msg == 'x'){
+                uint32_t val = va_arg(args, uint32_t);
+                print_hex8(val);
+            }
+
         }
+
+        
 
         else{
             put_char(*msg);

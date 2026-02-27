@@ -1,6 +1,7 @@
 #include<stdint.h>
 #include<stdbool.h>
 #include "../setup/pic.h"
+#include "../InlineAssembly/inline.h"
 #include "../std/stdFunctions.h"
 
 bool shift= false;
@@ -80,7 +81,7 @@ void keyboard(){
 	}
 
 	if(key== 0x1C && !released){
-		printk("Enter ");
+		enterPress();
 		goto eoi;
 	}
 

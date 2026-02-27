@@ -1,5 +1,10 @@
+.idea
+mnt
+cmake-build-debug
+
 boot.bin
 kernel.bin
+
 
 os-image.bin
 os.img
@@ -12,3 +17,5 @@ irq.o
 pic.o
 std.o
 handlers.o
+keyboard.o
+disk.o
