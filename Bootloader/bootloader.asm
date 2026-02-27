@@ -2,7 +2,28 @@ ORG 0x7C00
 [BITS 16]
 
 
+
+
+
 jmp start
+nop
+
+oem                 db "MSWIN4.1"
+
+bytesPerSector      dw 512
+sectorsPerCluster   db 4
+reservedSectors     dw 1
+numberOfFats        db 2
+rootEntryCount      dw 512
+totalSectors16      dw 40960
+mediaDescriptor     db 0xF8
+sectorsPerFAT       dw 40
+sectorsPerTrack     dw 63
+numberOfHeads       dw 16
+hiddenSectors       dd 0
+totalSectors32      dd 0
+
+
 
 GDT_Start:
 	null_descriptor:
@@ -46,7 +67,7 @@ read_from_disk:
 	mov bx, 0x0000
 
 	mov ah, 0x02
-	mov al, 5      ;no. of sectors to read
+	mov al, 20     ;no. of sectors to read
 	mov ch, 0
 	mov cl, 2
 	mov dh, 0
@@ -84,7 +105,7 @@ start_protected_mode:
 
 loop: jmp loop
 
-SET_A20:	
+SET_A20:
 	in  al, 0x92
     or  al, 00000010b   ; set bit 1.  bit1 is A20
     out 0x92, al
@@ -93,9 +114,3 @@ SET_A20:
 times 510- ($-$$) db 0
 
 dw 0xAA55
-
-	
-	
-
-
-

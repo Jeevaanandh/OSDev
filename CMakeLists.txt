@@ -16,4 +16,7 @@ file(GLOB_RECURSE C_FILES
 )
 
 add_executable(dummy ${C_FILES}
-        Kernel/InlineAssembly/inline.h)
+        Kernel/InlineAssembly/inline.h
+        Kernel/fat.c
+        Kernel/std/memcmp.c
+        Kernel/std/memcmp.h)
