@@ -15,8 +15,13 @@ i686-elf-gcc -m32 -ffreestanding -fno-pie -c Kernel/interruptHandler/handlers.c 
 i686-elf-gcc -m32 -ffreestanding -fno-pie -c Kernel/drivers/keyboard.c -o keyboard.o
 i686-elf-gcc -m32 -ffreestanding -fno-pie -c Kernel/drivers/disk.c -o disk.o
 
+i686-elf-gcc -m32 -ffreestanding -fno-pie -c Kernel/sched/scheduler.c -o scheduler.o
+i686-elf-gcc -m32 -ffreestanding -fno-pie -c Kernel/sched/task_struct.c -o task_struct.o
+i686-elf-gcc -m32 -ffreestanding -fno-pie -c Kernel/TestPrograms.c -o TestPrograms.o
+
+
 echo "[+] Linking kernel..."
-i686-elf-ld -T linker.ld --oformat binary -o kernel.bin kernel.o irq.o kernel_entry.o idt.o pic.o std.o handlers.o keyboard.o disk.o
+i686-elf-ld -T linker.ld --oformat binary -o kernel.bin kernel.o irq.o kernel_entry.o idt.o pic.o std.o handlers.o keyboard.o disk.o scheduler.o task_struct.o TestPrograms.o
 
 echo "[+] Creating disk image..."
 dd if=/dev/zero of=os-image.bin bs=1M count=20

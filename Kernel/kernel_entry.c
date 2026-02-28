@@ -2,6 +2,8 @@
 #include "setup/pic.h"
 #include "std/stdFunctions.h"
 #include "drivers/disk.h"
+#include "sched/task_struct.h"
+#include "TestPrograms.h"
 
 
 
@@ -12,14 +14,18 @@ void kernel_entry() {
 
     //CLEARING THE SCREEN
     clear_screen();
-    printk("IDT has been created!!!\n");
-    printk("Hello from C kernel!\nHello again!!! %c\n",'a');
-    printk("Second Hello\n");
+    createTask(&Task1);
+    createTask(&Task2);
 
+    printk("IDT has been created!!!\n");
+    printk("Hello from C kernel!\n");
     remapPIC(0x20, 0x28);
     printk("PIC Has been re-mapped!!!\n");
 
     char buffer[512];
+
+
+    printk("Task has been created!!!\n");
 
 
     /*
@@ -37,6 +43,8 @@ void kernel_entry() {
     printk("%x ", (unsigned char)buffer[511]);
 
     */
+
+
 
     
     while (1);

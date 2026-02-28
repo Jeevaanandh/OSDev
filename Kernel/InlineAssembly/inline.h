@@ -40,4 +40,7 @@ static inline void sti() {
     asm volatile("sti");
 }
 
+
+
+
 #endif //OSDEV_INLINE_H

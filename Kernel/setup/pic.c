@@ -64,10 +64,7 @@ void remapPIC(int offset1, int offset2){
     outb(MASTER_DATA, ICW4);
     outb(SLAVE_DATA, ICW4);
 
-    //DISABLING IRQ0. ie. TIMER INTERRUPT
-    uint8_t mask = inb(0x21);
-    mask |= 1 << 0;        // Set bit 0
-    outb(0x21, mask);
+
 
     sti();
 
