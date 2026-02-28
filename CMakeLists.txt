@@ -19,4 +19,9 @@ add_executable(dummy ${C_FILES}
         Kernel/InlineAssembly/inline.h
         Kernel/fat.c
         Kernel/std/memcmp.c
-        Kernel/std/memcmp.h)
+        Kernel/std/memcmp.h
+        Kernel/sched/scheduler.c
+        Kernel/sched/task_struct.h
+        Kernel/sched/scheduler.h
+        Kernel/TestPrograms.c
+        Kernel/TestPrograms.h)

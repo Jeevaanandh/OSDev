@@ -5,6 +5,7 @@
 //ASSEMBLY FUNCTIONS. THEY ARE THE IRQ'S
 extern void general_irq();
 extern void keyboard_irq();
+extern void timer_irq();
 
 
 
@@ -37,8 +38,12 @@ void addIDT_entries(){
     for(int i=0; i<256; i++){
         uint32_t offset;
 
+        if (i==32) {
+            offset= (uint32_t)&timer_irq;
+        }
+
         //i=33 is IRQ1 (KEYBOARD INTERRUPT)
-        if(i==33){
+        else if(i==33){
             offset= (uint32_t)&keyboard_irq;
 
         }
