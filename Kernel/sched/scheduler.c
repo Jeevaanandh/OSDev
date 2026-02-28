@@ -13,6 +13,9 @@
 */
 
 
+
+
+//inline assembly to do: mov esp, current_task->ESP
 void save_esp(task_struct *current_task) {
     asm volatile(
         "mov %%esp, %0"
@@ -22,6 +25,7 @@ void save_esp(task_struct *current_task) {
 
 
 
+// inline assembly to do: mov current_task->ESP, esp
 void load_esp(task_struct *current_task) {
     asm volatile(
         "mov %0, %%esp"
