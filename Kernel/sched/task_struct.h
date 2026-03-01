@@ -5,9 +5,12 @@
 #ifndef OSDEV_TASK_STRUCT_H
 #define OSDEV_TASK_STRUCT_H
 #include <stdint.h>
+
+
 typedef struct {
     uint32_t ESP;
     uint32_t stack[1024];
+    int time_executed;
 } task_struct;
 
 
