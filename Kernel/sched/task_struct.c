@@ -22,6 +22,7 @@ void createTask(void (*taskEntry)()) {
     }
 
     t->ESP= (uint32_t)stack_top;
+    t->time_executed=0;
     task_count++;
 
 }

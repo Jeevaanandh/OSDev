@@ -39,7 +39,7 @@ void timer_handler(uint32_t current_esp) {
 
     outb(0x20, 0x20);
     outb(0xA0, 0x20);
-    schedule(current_esp);
+    schedule2(current_esp);
 
 
 
